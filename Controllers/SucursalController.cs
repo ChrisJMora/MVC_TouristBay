@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MVC_TouristBay.Utils;
 
 namespace MVC_TouristBay.Controllers
 {
@@ -8,7 +9,7 @@ namespace MVC_TouristBay.Controllers
         // GET: SucursalController
         public ActionResult Index()
         {
-            return View();
+            return View(ListaSucursales.Instancia().Sucursales);
         }
 
         // GET: SucursalController/Details/5

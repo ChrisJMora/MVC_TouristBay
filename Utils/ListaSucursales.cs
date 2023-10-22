@@ -20,7 +20,7 @@ namespace MVC_TouristBay.Utils
             };
         }
         // Métodos
-        public ListaSucursales Instancia()
+        public static ListaSucursales Instancia()
         {
             if (_instancia == null)
             {
