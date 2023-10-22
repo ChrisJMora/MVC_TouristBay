@@ -15,9 +15,9 @@ namespace MVC_TouristBay.Models
         public string DireccionSucursal { get => _direccionSucursal; set => _direccionSucursal = value; }
         public int TelefonoSucursal { get => _telefonoSucursal; set => _telefonoSucursal = value; }
         // Constructor
-        public Sucursal(string direccion, int telefono)
+        public Sucursal(int id, string direccion, int telefono)
         {
-            IdSucursal = 0;
+            IdSucursal = id;
             _direccionSucursal = direccion;
             _telefonoSucursal = telefono;
         }
