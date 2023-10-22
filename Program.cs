@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 // Utils
 ListaSucursales.Instancia();
+ListaCiudades.Instancia();
 
 var app = builder.Build();
 

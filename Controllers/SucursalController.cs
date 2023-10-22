@@ -57,7 +57,8 @@ namespace MVC_TouristBay.Controllers
         [HttpPost]
         public ActionResult Edit(Sucursal nuevaSucursal)
         {
-            Sucursal? antiguaSucursal = sucursales.Find(x => x.IdSucursal == nuevaSucursal.IdSucursal);
+            Sucursal? antiguaSucursal = sucursales.Find(x => 
+                x.IdSucursal == nuevaSucursal.IdSucursal);
             if (antiguaSucursal != null)
             {
                 antiguaSucursal.DireccionSucursal = nuevaSucursal.DireccionSucursal;
