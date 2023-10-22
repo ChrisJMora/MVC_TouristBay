@@ -1,0 +1,31 @@
+﻿@model Sucursal
+@{
+    ViewData["Title"] = "Nueva Sucursal";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+
+    <h1>@ViewData["Title"]</h1>
+
+    <form method="post">
+        <div class="form-group">
+            <label>Dirección:</label>
+            <input asp-for="@Model.DireccionSucursal" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Teléfono:</label>
+            <input asp-for="@Model.TelefonoSucursal" class="form-control">
+        </div>
+        <a type="submit" class="btn btn-primary" asp-controller="Sucursal" asp-action="Create">
+            Añadir
+        </a>
+    </form>
+
+</body>
+</html>
