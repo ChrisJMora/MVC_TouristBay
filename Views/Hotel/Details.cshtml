@@ -1,0 +1,30 @@
+﻿@model Sucursal
+@{
+    ViewData["Title"] = "Detalles Sucursal";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+
+    <h1>@ViewData["Title"]</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>Dirección:</td>
+                <td>@Model.DireccionSucursal</td>
+            </tr>
+            <tr>
+                <td>Teléfono:</td>
+                <td>+593 9 @Model.TelefonoSucursal</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
