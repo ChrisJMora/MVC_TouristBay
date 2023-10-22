@@ -1,7 +1,11 @@
+using MVC_TouristBay.Utils;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// Utils
+ListaSucursales.Instancia();
 
 var app = builder.Build();
 
