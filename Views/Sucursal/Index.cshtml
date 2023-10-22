@@ -10,8 +10,13 @@
     <title>@ViewData["Title"]</title>
 </head>
 <body>
+
     <h1>@ViewData["Title"]</h1>
     
+    <a type="button" class="btn btn-primary" asp-controller="Sucursal" asp-action="Create">
+        Añadir sucursal
+    </a>
+
     <table class="table">
         <thead>
             <tr>
@@ -26,7 +31,7 @@
                     <tr>
                         <th scope="row">@item.IdSucursal</th>
                         <td>@item.DireccionSucursal</td>
-                        <td>@item.TelefonoSucursal</td>
+                        <td>+593 9 @item.TelefonoSucursal</td>
                     </tr>
                 }
         </tbody>

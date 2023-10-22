@@ -14,9 +14,9 @@ namespace MVC_TouristBay.Utils
         {
             _listaSucursales = new List<Sucursal>()
             {
-                new Sucursal(1,"Av. América N33-42 y Rumipamba (frente al Colegio San Gabriel)",0999809269),
-                new Sucursal(2,"Cosme Renella Oe3-136 y Av. Brasil Frente al UPC de la Av. Brasil",0983081000),
-                new Sucursal(3,"Av. De Los Granados E14-748 Y Shuaras (Junto a la Fybeca)",0923711441)
+                new Sucursal(1,"Av. América N33-42 y Rumipamba (frente al Colegio San Gabriel)",99809269),
+                new Sucursal(2,"Cosme Renella Oe3-136 y Av. Brasil Frente al UPC de la Av. Brasil",83081000),
+                new Sucursal(3,"Av. De Los Granados E14-748 Y Shuaras (Junto a la Fybeca)",23711441)
             };
         }
         // Métodos
