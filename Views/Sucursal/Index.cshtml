@@ -23,6 +23,7 @@
                 <th scope="col">Id</th>
                 <th scope="col">Dirección</th>
                 <th scope="col">Teléfono</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -32,6 +33,14 @@
                         <th scope="row">@item.IdSucursal</th>
                         <td>@item.DireccionSucursal</td>
                         <td>+593 9 @item.TelefonoSucursal</td>
+                        <td>
+                            <a type="button" class="btn btn-primary" asp-controller="Sucursal" asp-action="Details">
+                                Visualizar</a>
+                            <a type="button" class="btn btn-warning" asp-controller="Sucursal" asp-action="Edit">
+                                Editar</a>
+                            <a type="button" class="btn btn-danger" asp-controller="Sucursal" asp-action="Delete">
+                                Eliminar</a>
+                        </td>
                     </tr>
                 }
         </tbody>
