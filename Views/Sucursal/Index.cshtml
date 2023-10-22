@@ -34,11 +34,11 @@
                         <td>@item.DireccionSucursal</td>
                         <td>+593 9 @item.TelefonoSucursal</td>
                         <td>
-                            <a type="button" class="btn btn-primary" asp-controller="Sucursal" asp-action="Details">
+                            <a type="button" class="btn btn-primary" asp-route-IdSucursal="@item.IdSucursal" asp-action="Details">
                                 Visualizar</a>
-                            <a type="button" class="btn btn-warning" asp-controller="Sucursal" asp-action="Edit">
+                        <a type="button" class="btn btn-warning" asp-route-IdSucursal="@item.IdSucursal"  asp-action="Edit">
                                 Editar</a>
-                            <a type="button" class="btn btn-danger" asp-controller="Sucursal" asp-action="Delete">
+                        <a type="button" class="btn btn-danger" asp-route-IdSucursal="@item.IdSucursal" asp-action="Delete">
                                 Eliminar</a>
                         </td>
                     </tr>

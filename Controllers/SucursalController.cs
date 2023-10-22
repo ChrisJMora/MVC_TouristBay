@@ -15,9 +15,14 @@ namespace MVC_TouristBay.Controllers
         }
 
         // GET: SucursalController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int IdSucursal)
         {
-            return View();
+            Sucursal? sucursal = sucursales.Find(x => x.IdSucursal == IdSucursal);
+            if (sucursal != null)
+            {
+                return View(sucursal);
+            }
+            return RedirectToAction("Index");
         }
 
         // GET: SucursalController/Create
@@ -39,14 +44,39 @@ namespace MVC_TouristBay.Controllers
         }
 
         // GET: SucursalController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int IdSucursal)
         {
+            Sucursal? sucursal = sucursales.Find(x => x.IdSucursal == IdSucursal);
+            if (sucursal != null)
+            {
+                return View(sucursal);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Sucursal nuevaSucursal)
+        {
+            Sucursal? antiguaSucursal = sucursales.Find(x => x.IdSucursal == nuevaSucursal.IdSucursal);
+            if (antiguaSucursal != null)
+            {
+                antiguaSucursal.DireccionSucursal = nuevaSucursal.DireccionSucursal;
+                antiguaSucursal.TelefonoSucursal = nuevaSucursal.TelefonoSucursal;
+                return RedirectToAction("Index");
+            }
             return View();
         }
 
+
         // GET: SucursalController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int IdSucursal)
         {
+            Sucursal? sucursal = sucursales.Find(x => x.IdSucursal == IdSucursal);
+            if (sucursal != null)
+            {
+                ListaSucursales.Instancia().Sucursales.Remove(sucursal);
+                return RedirectToAction("Index");
+            }
             return View();
         }
     }
