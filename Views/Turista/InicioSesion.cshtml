@@ -1,0 +1,28 @@
+﻿@model Usuario
+@{
+    ViewData["Title"] = "Inicio de Sesión";
+}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewData["Title"]</title>
+    </head>
+    <body>
+        <h1>@ViewData["Title"]</h1>
+
+        <form method="post">
+            <div class="form-group">
+                <label>Nombre de usuario:</label>
+                <input asp-for="@Model.NombreUsuario" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Contraseña:</label>
+                <input asp-for="@Model.ContraseniaUsuario" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">siguiente</button>
+        </form>
+
+    </body>
+</html>

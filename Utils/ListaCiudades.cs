@@ -31,5 +31,6 @@ namespace MVC_TouristBay.Utils
             }
             return _instancia;
         }
+        
     }
 }

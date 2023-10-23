@@ -16,8 +16,8 @@ namespace MVC_TouristBay.Models
         private int _telefonoTurista;
         [Required]
         private int _sucursalTurista;
-        [Required]
         private int _hotelTurista;
+        private Usuario _usuarioTurista;
         // Propiedades
         public int IdTurista { get => _idTurista; set => _idTurista = value; }
         public string NombreTurista { get => _nombreTurista; set => _nombreTurista = value;}
@@ -26,16 +26,21 @@ namespace MVC_TouristBay.Models
         public int TelefonoTurista { get => _telefonoTurista; set => _telefonoTurista = value; }
         public int SucursalTurista { get => _sucursalTurista; set => _sucursalTurista = value; }
         public int HotelTurista { get => _hotelTurista; set => _hotelTurista = value; }
+        public Usuario UsuarioTurista { get => _usuarioTurista; set => _usuarioTurista = value; }
         // Constructor
-        public Turista(string nombre, string apellido, string email, string direccion, int telefono, int sucursal, int hotel)
+        public Turista() { }
+        public Turista(string nombre, string apellido, string email,
+            string direccion, int telefono, int sucursal, int hotel,
+            Usuario usuario)
         {
             _idTurista = 0;
             _nombreTurista = nombre;
             _apellidoTurista= apellido;
-            _direccionTurista = direccion;
+            _emailTurista= email;
             _telefonoTurista= telefono;
             _sucursalTurista= sucursal;
             _hotelTurista= hotel;
+            _usuarioTurista= usuario;
         }
     }
 }
