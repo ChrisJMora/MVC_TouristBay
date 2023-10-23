@@ -18,37 +18,34 @@
             Añadir hotel
     </a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Ciudad</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-                @foreach(var item in Model)
-                {
-                    <tr>
-                        <th scope="row">@item.IdHotel</th>
-                        <td>@item.NombreHotel</td>
-                        <td>@item.obtenerCiudad()</td>
-                        <td>
+    <div class="container img-thumbnail">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-4">
+                    <div class="card">
+                        <img class="card-img-top" src="@item.ImagenHotel" alt="Descripción Imagen">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.NombreHotel</h5>
+                            <p class="card-text">@item.obtenerCiudad()</p>
                             <a type="button" class="btn btn-primary"
-                            asp-route-IdHotel="@item.IdHotel" asp-action="Details">
-                                    Visualizar</a>
-                            <a type="button" class="btn btn-warning" 
-                            asp-route-IdHotel="@item.IdHotel"  asp-action="Edit">
-                                    Editar</a>
-                            <a type="button" class="btn btn-danger" 
-                            asp-route-IdHotel="@item.IdHotel" asp-action="Delete">
-                                    Eliminar</a>
-                        </td>
-                    </tr>
-                }
-        </tbody>
-    </table>
+                                asp-route-IdHotel="@item.IdHotel" asp-action="Details">
+                                Visualizar
+                            </a>
+                            <a type="button" class="btn btn-warning"
+                               asp-route-IdHotel="@item.IdHotel" asp-action="Edit">
+                                Editar
+                            </a>
+                            <a type="button" class="btn btn-danger"
+                               asp-route-IdHotel="@item.IdHotel" asp-action="Delete">
+                                Eliminar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 
 </body>
 </html>

@@ -33,12 +33,12 @@ namespace MVC_TouristBay.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Sucursal sucursal)
+        public ActionResult Create(Hotel hotel)
         {
-            if (sucursal != null)
+            if (hotel != null)
             {
-                sucursal.IdSucursal = _hoteles.Count() + 1;
-                ListaSucursales.Instancia().Sucursales.Add(sucursal);
+                hotel.IdHotel = _hoteles.Count() + 1;
+                _hoteles.Add(hotel);
                 return RedirectToAction("Index");
             }
             return View();
@@ -47,10 +47,10 @@ namespace MVC_TouristBay.Controllers
         // GET: SucursalController/Edit/5
         public ActionResult Edit(int IdHotel)
         {
-            Hotel? sucursal = _hoteles.Find(x => x.IdHotel == IdHotel);
-            if (sucursal != null)
+            Hotel? hotel = _hoteles.Find(x => x.IdHotel == IdHotel);
+            if (hotel != null)
             {
-                return View(sucursal);
+                return View(hotel);
             }
             return RedirectToAction("Index");
         }
