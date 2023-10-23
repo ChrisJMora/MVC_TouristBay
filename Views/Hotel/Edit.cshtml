@@ -25,7 +25,7 @@
             <input asp-for="@Model.DireccionHotel" class="form-control">
         </div>
         <label>Ciudad:</label>
-        <select class="select">
+        <select class="select" name="CiudadHotel">
             @foreach (var item in ciudades)
             {
                 <option value="@item.IdCiudad">@item.NombreCiudad</option>

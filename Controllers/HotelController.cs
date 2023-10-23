@@ -62,8 +62,12 @@ namespace MVC_TouristBay.Controllers
                 x.IdHotel == nuevoHotel.IdHotel);
             if (antiguoHotel != null)
             {
-                //antiguoHotel.DireccionSucursal = nuevaSucursal.DireccionSucursal;
-                //antiguoHotel.TelefonoSucursal = nuevaSucursal.TelefonoSucursal;
+                antiguoHotel.NombreHotel = nuevoHotel.NombreHotel;
+                antiguoHotel.DireccionHotel = nuevoHotel.DireccionHotel;
+                antiguoHotel.CiudadHotel = nuevoHotel.CiudadHotel;
+                antiguoHotel.TelefonoHotel = nuevoHotel.TelefonoHotel;
+                antiguoHotel.PlazasHotel = nuevoHotel.PlazasHotel;
+
                 return RedirectToAction("Index");
             }
             return View();
