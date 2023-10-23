@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MVC_TouristBay.Utils;
+using System.ComponentModel.DataAnnotations;
 
 namespace MVC_TouristBay.Models
 {
@@ -32,6 +33,17 @@ namespace MVC_TouristBay.Models
             _ciudadHotel= idCiudad;
             _telefonoHotel = telefono;
             _plazasHotel = plazas;
+        }
+        // Métodos
+        public string obtenerCiudad()
+        {
+            List<Ciudad> ciudades = ListaCiudades.Instancia().Ciudades;
+            Ciudad? ciudad = ciudades.Find(x => x.IdCiudad == _ciudadHotel);
+            if (ciudad != null)
+            {
+                return ciudad.NombreCiudad;
+            }
+            return "";
         }
     }
 }
