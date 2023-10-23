@@ -13,8 +13,9 @@
 
     <h1>@ViewData["Title"]</h1>
     
-    <a type="button" class="btn btn-primary" asp-controller="Sucursal" asp-action="Create">
-        Añadir sucursal
+    <a type="button" class="btn btn-primary" 
+    asp-controller="Hotel" asp-action="Create">
+            Añadir hotel
     </a>
 
     <table class="table">
@@ -22,10 +23,7 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Dirección</th>
                 <th scope="col">Ciudad</th>
-                <th scope="col">Teléfono</th>
-                <th scope="col">Plazas</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -35,19 +33,16 @@
                     <tr>
                         <th scope="row">@item.IdHotel</th>
                         <td>@item.NombreHotel</td>
-                        <td>@item.DireccionHotel</td>
                         <td>@item.obtenerCiudad()</td>
-                        <td>@item.TelefonoHotel</td>
-                        <td>@item.PlazasHotel</td>
                         <td>
                             <a type="button" class="btn btn-primary"
-                            asp-route-IdSucursal="@item.IdHotel" asp-action="Details">
+                            asp-route-IdHotel="@item.IdHotel" asp-action="Details">
                                     Visualizar</a>
                             <a type="button" class="btn btn-warning" 
-                            asp-route-IdSucursal="@item.IdHotel"  asp-action="Edit">
+                            asp-route-IdHotel="@item.IdHotel"  asp-action="Edit">
                                     Editar</a>
                             <a type="button" class="btn btn-danger" 
-                            asp-route-IdSucursal="@item.IdHotel" asp-action="Delete">
+                            asp-route-IdHotel="@item.IdHotel" asp-action="Delete">
                                     Eliminar</a>
                         </td>
                     </tr>

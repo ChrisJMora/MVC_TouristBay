@@ -9,9 +9,9 @@
         public int IdCiudad { get => _idCiudad; set => _idCiudad = value; }
         public string NombreCiudad { get => _nombreCiudad; set => _nombreCiudad = value; }
         //Constructor
-        public Ciudad(string nombre)
+        public Ciudad(int id, string nombre)
         {
-            _idCiudad = 0;
+            _idCiudad = id;
             _nombreCiudad = nombre;
         }
     }

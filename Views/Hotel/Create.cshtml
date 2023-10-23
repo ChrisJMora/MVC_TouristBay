@@ -1,6 +1,8 @@
-﻿@model Sucursal
+﻿@using MVC_TouristBay.Utils;
+@model Hotel
 @{
     ViewData["Title"] = "Nuevo Hotel";
+    List<Ciudad> ciudades = ListaCiudades.Instancia().Ciudades;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -15,12 +17,27 @@
 
     <form method="post">
         <div class="form-group">
-            <label>Dirección:</label>
-            <input asp-for="@Model.DireccionSucursal" class="form-control">
+            <label>Nombre:</label>
+            <input asp-for="@Model.NombreHotel" class="form-control">
         </div>
         <div class="form-group">
+            <label>Dirección:</label>
+            <input asp-for="@Model.DireccionHotel" class="form-control">
+        </div>
+        <label>Ciudad:</label>
+        <select class="select">
+            @foreach(var item in ciudades)
+            {
+                <option value="@item.IdCiudad">@item.NombreCiudad</option>
+            }
+        </select>
+        <div class="form-group">
             <label>Teléfono:</label>
-            <input asp-for="@Model.TelefonoSucursal" class="form-control">
+            <input asp-for="@Model.TelefonoHotel" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Plazas:</label>
+            <input asp-for="@Model.PlazasHotel" class="form-control">
         </div>
         <button type="submit" class="btn btn-primary">Añadir</button>
     </form>

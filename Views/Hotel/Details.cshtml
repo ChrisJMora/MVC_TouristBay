@@ -1,6 +1,6 @@
-﻿@model Sucursal
+﻿@model Hotel
 @{
-    ViewData["Title"] = "Detalles Sucursal";
+    ViewData["Title"] = "Detalles Hotel";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -16,12 +16,24 @@
     <table class="table">
         <tbody>
             <tr>
+                <td>Nombre:</td>
+                <td>@Model.NombreHotel</td>
+            </tr>
+            <tr>
                 <td>Dirección:</td>
-                <td>@Model.DireccionSucursal</td>
+                <td>@Model.DireccionHotel</td>
+            </tr>
+            <tr>
+                <td>Ciudad:</td>
+                <td>@Model.obtenerCiudad()</td>
             </tr>
             <tr>
                 <td>Teléfono:</td>
-                <td>+593 9 @Model.TelefonoSucursal</td>
+                <td>@Model.TelefonoHotel</td>
+            </tr>
+            <tr>
+                <td>Plazas:</td>
+                <td>@Model.PlazasHotel</td>
             </tr>
         </tbody>
     </table>

@@ -14,12 +14,12 @@ namespace MVC_TouristBay.Utils
         {
             _listaCiudades = new List<Ciudad>()
             {
-                new Ciudad("Quito"),
-                new Ciudad("Guayaquil"),
-                new Ciudad("Manta"),
-                new Ciudad("Cuenca"),
-                new Ciudad("Loja"),
-                new Ciudad("Galapagos"),
+                new Ciudad(1,"Quito"),
+                new Ciudad(2,"Guayaquil"),
+                new Ciudad(3,"Manta"),
+                new Ciudad(4,"Cuenca"),
+                new Ciudad(5,"Loja"),
+                new Ciudad(6,"Galapagos"),
             };
         }
         // Métodos

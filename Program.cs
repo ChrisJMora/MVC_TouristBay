@@ -7,6 +7,7 @@ builder.Services.AddControllersWithViews();
 // Utils
 ListaSucursales.Instancia();
 ListaCiudades.Instancia();
+ListaHoteles.Instancia();
 
 var app = builder.Build();
 

@@ -7,20 +7,21 @@ namespace MVC_TouristBay.Controllers
 {
     public class HotelController : Controller
     {
-        private List<Sucursal> sucursales = ListaSucursales.Instancia().Sucursales;
+        private List<Hotel> _hoteles = ListaHoteles.Instancia().Hoteles;
+
         // GET: SucursalController
         public ActionResult Index()
         {
-            return View(sucursales);
+            return View(_hoteles);
         }
 
         // GET: SucursalController/Details/5
-        public ActionResult Details(int IdSucursal)
+        public ActionResult Details(int IdHotel)
         {
-            Sucursal? sucursal = sucursales.Find(x => x.IdSucursal == IdSucursal);
-            if (sucursal != null)
+            Hotel? hotel = _hoteles.Find(x => x.IdHotel == IdHotel);
+            if (hotel != null)
             {
-                return View(sucursal);
+                return View(hotel);
             }
             return RedirectToAction("Index");
         }
@@ -36,7 +37,7 @@ namespace MVC_TouristBay.Controllers
         {
             if (sucursal != null)
             {
-                sucursal.IdSucursal = sucursales.Count() + 1;
+                sucursal.IdSucursal = _hoteles.Count() + 1;
                 ListaSucursales.Instancia().Sucursales.Add(sucursal);
                 return RedirectToAction("Index");
             }
@@ -44,9 +45,9 @@ namespace MVC_TouristBay.Controllers
         }
 
         // GET: SucursalController/Edit/5
-        public ActionResult Edit(int IdSucursal)
+        public ActionResult Edit(int IdHotel)
         {
-            Sucursal? sucursal = sucursales.Find(x => x.IdSucursal == IdSucursal);
+            Hotel? sucursal = _hoteles.Find(x => x.IdHotel == IdHotel);
             if (sucursal != null)
             {
                 return View(sucursal);
@@ -55,14 +56,14 @@ namespace MVC_TouristBay.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Sucursal nuevaSucursal)
+        public ActionResult Edit(Hotel nuevoHotel)
         {
-            Sucursal? antiguaSucursal = sucursales.Find(x => 
-                x.IdSucursal == nuevaSucursal.IdSucursal);
-            if (antiguaSucursal != null)
+            Hotel? antiguoHotel = _hoteles.Find(x => 
+                x.IdHotel == nuevoHotel.IdHotel);
+            if (antiguoHotel != null)
             {
-                antiguaSucursal.DireccionSucursal = nuevaSucursal.DireccionSucursal;
-                antiguaSucursal.TelefonoSucursal = nuevaSucursal.TelefonoSucursal;
+                //antiguoHotel.DireccionSucursal = nuevaSucursal.DireccionSucursal;
+                //antiguoHotel.TelefonoSucursal = nuevaSucursal.TelefonoSucursal;
                 return RedirectToAction("Index");
             }
             return View();
@@ -70,12 +71,12 @@ namespace MVC_TouristBay.Controllers
 
 
         // GET: SucursalController/Delete/5
-        public ActionResult Delete(int IdSucursal)
+        public ActionResult Delete(int IdHotel)
         {
-            Sucursal? sucursal = sucursales.Find(x => x.IdSucursal == IdSucursal);
-            if (sucursal != null)
+            Hotel? hotel = _hoteles.Find(x => x.IdHotel == IdHotel);
+            if (hotel != null)
             {
-                ListaSucursales.Instancia().Sucursales.Remove(sucursal);
+                _hoteles.Remove(hotel);
                 return RedirectToAction("Index");
             }
             return View();

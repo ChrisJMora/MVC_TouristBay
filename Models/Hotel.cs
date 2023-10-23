@@ -25,9 +25,9 @@ namespace MVC_TouristBay.Models
         public int TelefonoHotel { get => _telefonoHotel; set => _telefonoHotel = value; }
         public int PlazasHotel { get => _plazasHotel; set => _plazasHotel = value; }
         // Constructor
-        public Hotel(string nombre, string direccion, int idCiudad, int telefono, int plazas)
+        public Hotel(int id, string nombre, string direccion, int idCiudad, int telefono, int plazas)
         {
-            _idHotel = 0;
+            _idHotel = id;
             _nombreHotel = nombre;
             _direccionHotel = direccion;
             _ciudadHotel= idCiudad;
