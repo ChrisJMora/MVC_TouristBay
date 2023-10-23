@@ -8,10 +8,19 @@ namespace MVC_TouristBay.Controllers
     public class TuristaController : Controller
     {
         List<Turista> turistas = ListaTuristas.Instancia().Turistas;
+        List<Usuario> usuarios = ListaUsuarios.Instancia().Usuarios;
         // GET: TuristaController
-        public IActionResult Index(Turista turista)
+        public IActionResult Index(int idUsuario)
         {
             Console.WriteLine("En la vista de Index");
+            Console.WriteLine($"IdUsuario:{idUsuario}");
+            Turista? turista = turistas.Find(x => x.IdUsuario == idUsuario);
+            if (turista != null)
+            {
+                Console.WriteLine($"Turista:{turista.NombreCompleto()}");
+                return View(turista);
+            }
+            Console.WriteLine("Turista no encontrado");
             return View(turista);
         }
 
@@ -23,10 +32,17 @@ namespace MVC_TouristBay.Controllers
         }
 
         [HttpPost]
-        public IActionResult Registro(Usuario usuario)
+        public IActionResult Registro(Usuario nuevoUsuario)
         {
-            Console.WriteLine($"Usuario:{usuario.NombreUsuario}," + $"Contraseña:{usuario.ContraseniaUsuario}");
-            return RedirectToAction("DatosPersonales", usuario);
+            Console.WriteLine($"Usuario:{nuevoUsuario.NombreUsuario}," + $"Contraseña:{nuevoUsuario.ContraseniaUsuario}");
+            // validar creedenciales
+            Usuario? usuario = usuarios.Find(x => x.NombreUsuario == nuevoUsuario.NombreUsuario);
+            if (usuario != null)
+            {
+                Console.WriteLine("El nombre de usuario ya existe");
+                return View(usuario);
+            }
+            return RedirectToAction("DatosPersonales", nuevoUsuario);
         }
 
         // GET: TuristaController
@@ -42,7 +58,9 @@ namespace MVC_TouristBay.Controllers
             Console.WriteLine("En el post de Datos Personales");
             Console.WriteLine($"Usuario:{usuario.NombreUsuario}," + $"Contraseña:{usuario.ContraseniaUsuario}");
             Console.WriteLine($"Turista:{turista.NombreTurista} {turista.ApellidoTurista}");
-            turista.UsuarioTurista = usuario;
+            usuario.IdUsuario = usuarios.Count() + 1;
+            turista.IdUsuario = usuario.IdUsuario;
+            usuarios.Add( usuario );
             turistas.Add( turista );
             return RedirectToAction("InicioSesion");
         }
@@ -55,21 +73,28 @@ namespace MVC_TouristBay.Controllers
         }
 
         [HttpPost]
-        public IActionResult InicioSesion(Usuario usuario)
+        public IActionResult InicioSesion(Usuario nuevoUsuario)
         {
             Console.WriteLine("En el post de Inicio de Sesión");
-            Console.WriteLine($"Usuario:{usuario.NombreUsuario}," + $"Contraseña:{usuario.ContraseniaUsuario}");
-            // validar creedenciales
-            Turista? turista = turistas.Find(x => 
-            x.UsuarioTurista.NombreUsuario == usuario.NombreUsuario &&
-            x.UsuarioTurista.ContraseniaUsuario == usuario.ContraseniaUsuario);
-            if (turista == null )
+            Console.WriteLine($"Usuario:{nuevoUsuario.NombreUsuario}," + $"Contraseña:{nuevoUsuario.ContraseniaUsuario}");
+            // Validar Creedenciales
+                // Buscar Usuario
+            Usuario? usuario = usuarios.Find(x => x.NombreUsuario == nuevoUsuario.NombreUsuario);
+            if (usuario == null )
             {
-                Console.WriteLine("Turista no encontrado");
-                return View(usuario);
+                Console.WriteLine("Usuario no encontrado");
+                return View(nuevoUsuario);
             }
-            Console.WriteLine("Turista encontrado");
-            return RedirectToAction("Index", turista);
+                // Verificar Contraseña
+            if (usuario.ContraseniaUsuario != nuevoUsuario.ContraseniaUsuario)
+            {
+                Console.WriteLine("Contraseña Incorrecta");
+                return View(nuevoUsuario);
+            }
+            // Usuario Verificado
+            Console.WriteLine("Usuario verificado");
+            Console.WriteLine($"IdUsuario:{usuario.IdUsuario}");
+            return RedirectToAction("Index", new { usuario.IdUsuario });
         }
 
         // GET: TuristaController/Details/5

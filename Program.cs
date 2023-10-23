@@ -9,6 +9,7 @@ ListaSucursales.Instancia();
 ListaCiudades.Instancia();
 ListaHoteles.Instancia();
 ListaTuristas.Instancia();
+ListaUsuarios.Instancia();
 
 var app = builder.Build();
 

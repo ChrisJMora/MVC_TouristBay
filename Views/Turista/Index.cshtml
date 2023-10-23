@@ -10,8 +10,8 @@
         <title>@ViewData["Title"]</title>
     </head>
     <body>
-        <h1>Bienvenido @Model.NombreTurista @Model.ApellidoTurista</h1>
+        <h1>Bienvenido, @Model.NombreCompleto()</h1>
         <button class="btn btn-primary">Comprar vuelo</button>
-        <button class="btn btn-primary">Reservar hotel</button>
+        <a asp-controller="Hotel" asp-action="index" class="btn btn-primary">Reservar hotel</a>
     </body>
 </html>
