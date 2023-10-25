@@ -1,6 +1,8 @@
-﻿@model Turista
+﻿@using MVC_TouristBay.Utils;
+@model Turista
 @{
     ViewData["Title"] = "Tourist Bay";
+    List<Ciudad> ciudades = ListaCiudades.Instancia().Ciudades;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -8,10 +10,63 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ab-datepicker@latest/css/datepicker.css" type="text/css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ab-datepicker@latest"></script>
+
     </head>
     <body>
         <h1>Bienvenido, @Model.NombreCompleto()</h1>
-        <button class="btn btn-primary">Comprar vuelo</button>
-        <a asp-controller="Hotel" asp-action="index" class="btn btn-primary">Reservar hotel</a>
+
+        <hr>
+        <h2>Vuelos</h2>
+        <form method="post" asp-controller="Vuelo">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Origen</th>
+                        <th scope="col">Destino</th>
+                        <th scope="col">Fecha de Salida</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <select class="select" name="Origen">
+                                @foreach (var item in ciudades)
+                                {
+                                    <option value="@item.IdCiudad">@item.NombreCiudad (@item.AbreviaturaCiudad)</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <select class="select" name="Destino">
+                                @foreach (var item in ciudades)
+                                {
+                                    <option value="@item.IdCiudad">@item.NombreCiudad (@item.AbreviaturaCiudad)</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <input class="date form-control" id="date1" name="FechaSalida"
+                                   type="date" placeholder="d/M/y" title="format: dd/MM/y" />
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-primary">buscar vuelo</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </form>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.date').datepicker();
+        });
+    </script>
+
     </body>
 </html>

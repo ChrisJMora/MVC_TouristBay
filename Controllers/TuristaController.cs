@@ -10,18 +10,23 @@ namespace MVC_TouristBay.Controllers
         List<Turista> turistas = ListaTuristas.Instancia().Turistas;
         List<Usuario> usuarios = ListaUsuarios.Instancia().Usuarios;
         // GET: TuristaController
-        public IActionResult Index(int idUsuario)
+        public IActionResult Index()
         {
-            Console.WriteLine("En la vista de Index");
-            Console.WriteLine($"IdUsuario:{idUsuario}");
-            Turista? turista = turistas.Find(x => x.IdUsuario == idUsuario);
-            if (turista != null)
+            Console.WriteLine("En la vista de Turista");
+            int? IdTuristaActual = HttpContext.Session.GetInt32("IdTuristaActual");
+            Console.WriteLine($"IdTuristaActual:{IdTuristaActual}");
+            if (IdTuristaActual == null)
             {
-                Console.WriteLine($"Turista:{turista.NombreCompleto()}");
-                return View(turista);
+                Console.WriteLine("La id del turista actual es igual a null");
+                return View();
             }
-            Console.WriteLine("Turista no encontrado");
-            return View(turista);
+            Turista? turistaActual = turistas.Find(x => x.IdTurista == IdTuristaActual);
+            if (turistaActual == null)
+            {
+                Console.WriteLine("No existe un turista con esa id");
+                return View();
+            }
+            return View(turistaActual);
         }
 
         // GET: TuristaController
@@ -94,7 +99,19 @@ namespace MVC_TouristBay.Controllers
             // Usuario Verificado
             Console.WriteLine("Usuario verificado");
             Console.WriteLine($"IdUsuario:{usuario.IdUsuario}");
-            return RedirectToAction("Index", new { usuario.IdUsuario });
+            // Sesión
+            int idUsuario = usuario.IdUsuario;
+            Turista? turista = turistas.Find(x => x.IdUsuario == idUsuario);
+            if (turista != null)
+            {
+                Console.WriteLine($"Turista:{turista.NombreCompleto()}");
+                Console.WriteLine($"IdTurista:{turista.IdTurista}");
+                // Se guarda la id del turista actualmente logeado
+                HttpContext.Session.SetInt32("IdTuristaActual", turista.IdTurista);
+                return RedirectToAction("Index");
+            }
+            Console.WriteLine("Turista no encontrado");
+            return View(usuario);
         }
 
         // GET: TuristaController/Details/5

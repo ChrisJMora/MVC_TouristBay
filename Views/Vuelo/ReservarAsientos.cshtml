@@ -1,0 +1,101 @@
+﻿@model Vuelo
+@{
+    ViewData["Title"] = "Reservar asientos";
+}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewData["Title"]</title>
+    </head>
+    <body>
+
+        <div class="container-fluid">
+            <div class="row">
+
+                <!--Reservar Asientos-->
+                <div class="col">
+                    <h1>Reservar Asientos</h1>
+
+                </div>
+
+                <!--Detalles del Vuelo-->
+                <div class="col-8">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td colspan="3">
+                                    <div class="d-flex justify-content-end lead">
+                                        @Model.ObtenerAerolinea()
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="display-6">
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        @Model.ObtenerCiudad(Model.OrigenVuelo)
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        ➔
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        @Model.ObtenerCiudad(Model.DestinoVuelo)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <strong>@Model.ObtenerFecha(Model.FHsalidaVuelo)</strong>
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <strong>@Model.ObtenerFecha(Model.FHllegadaVuelo)</strong>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        @Model.ObtenerHora(Model.FHsalidaVuelo)
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        @Model.ObtenerHora(Model.FHllegadaVuelo)
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>Clase:</td>
+                                <td>@Model.ObtenerClase()</td>
+                            </tr>
+                            <tr>
+                                <td>Precio:</td>
+                                <td>@Model.ObtenerPrecio() USD</td>
+                            </tr>
+                            <tr>
+                                <td>Plazas disponibles:</td>
+                                <td>@Model.ObtenerPlazas()</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

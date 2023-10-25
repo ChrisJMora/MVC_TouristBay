@@ -29,10 +29,10 @@ namespace MVC_TouristBay.Models
         public int IdUsuario { get => _idUsuario; set => _idUsuario = value; }
         // Constructor
         public Turista() { }
-        public Turista(string nombre, string apellido, string email, int telefono,
+        public Turista(int id, string nombre, string apellido, string email, int telefono,
             int sucursal, int hotel, int idUsuario)
         {
-            _idTurista = 0;
+            _idTurista = id;
             _nombreTurista = nombre;
             _apellidoTurista= apellido;
             _emailTurista= email;

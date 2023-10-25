@@ -1,0 +1,76 @@
+﻿@using MVC_TouristBay.Utils;
+@model List<Vuelo>
+@{
+    List<Ciudad> ciudades = ListaCiudades.Instancia().Ciudades;
+    if (Model.Count > 0)
+    {
+        Vuelo vuelo = Model.First<Vuelo>();
+        string origen = vuelo.ObtenerCiudad(vuelo.OrigenVuelo);
+        string destino = vuelo.ObtenerCiudad(vuelo.DestinoVuelo);
+        ViewData["Title"] = $"Vuelos Disponibles {origen} -> {destino}";
+    }
+    else
+    {
+        ViewData["Title"] = "No hay vuelos disponibles";
+    }
+
+}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewData["Title"]</title>
+    </head>
+    <body>
+
+        <h1>@ViewData["Title"]</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Aerolínea</th>
+                    <th scope="col">Fecha de Salida</th>
+                    <th scope="col">Fecha de Llegada</th>
+                    <th scope="col">Hora de Salida</th>
+                    <th scope="col">Hora de Llegada</th>
+                    <th scope="col">Tiempo de Vuelo</th>
+                    <th scope="col">Clase</th>
+                </tr>
+            </thead>
+            <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.ObtenerAerolinea()</td>
+                            <td>@item.ObtenerFecha(item.FHsalidaVuelo)</td>
+                            <td>@item.ObtenerFecha(item.FHllegadaVuelo)</td>
+                            <td>@item.ObtenerHora(item.FHsalidaVuelo)</td>
+                            <td>@item.ObtenerHora(item.FHllegadaVuelo)</td>
+                            <td>@item.ObtenerTiempoVuelo()</td>
+                            <form method="post">
+                                <td>
+                                    <select class="select" name="ClaseVuelo">
+                                        <option value="@true">Económico @item.PrecioEconomicoVuelo USD</option>
+                                        <option value="@false">Preferencial @item.PrecioPreferencialVuelo USD</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <button asp-action="ReservarAsientos" asp-route-IdVuelo="@item.IdVuelo"
+                                       type="submit" class="btn btn-primary">
+                                        reservar asientos
+                                    </button>
+                                </td>
+                            </form>
+                        </tr>
+                    }
+            </tbody>
+        </table>
+
+        <a asp-controller="Turista" asp-action="Index" 
+        type="button" class="btn btn-outline-primary">
+            regresar
+        </a>
+
+    </body>
+</html>
